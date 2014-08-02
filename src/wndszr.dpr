@@ -1,3 +1,8 @@
+// wndszr.dpr
+//
+// Copyright Wave Software Limited.
+//
+
 program wndszr;
 
 {$R *.dres}

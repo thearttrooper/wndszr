@@ -1,3 +1,8 @@
+// strings.pas
+//
+// Copyright Wave Software Limited.
+//
+
 unit strings;
 
 interface

@@ -1,3 +1,8 @@
+// mainframe.pas
+//
+// Copyright Wave Software Limited.
+//
+
 unit mainframe;
 
 interface

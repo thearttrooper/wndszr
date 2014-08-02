@@ -1,9 +1,7 @@
-{
- FileVersionInfo.pas
-
- Copyright (C) 1994-2007 IntelliCorp, Inc.
- All rights reserved.
-}
+// fileversioninfo.pas
+//
+// Copyright Wave Software Limited.
+//
 
 unit fileversioninfo;
 

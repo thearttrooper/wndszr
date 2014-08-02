@@ -1,3 +1,8 @@
+// aboutframe.pas
+//
+// Copyright Wave Software Limited.
+//
+
 unit aboutframe;
 
 interface
