@@ -331,25 +331,20 @@ object frmAbout: TfrmAbout
     ParentFont = False
   end
   object lblVersion: TLabel
-    Left = 65
+    Left = 8
     Top = 87
-    Width = 123
+    Width = 237
     Height = 13
+    Alignment = taCenter
+    AutoSize = False
     Caption = 'Version A.B.C (Build DDD)'
   end
   object lblCopyright1: TLabel
-    Left = 31
+    Left = 17
     Top = 106
-    Width = 192
+    Width = 220
     Height = 13
-    Caption = 'Copyright 2010 Wave Software Limited.'
-  end
-  object lblCopyright2: TLabel
-    Left = 81
-    Top = 125
-    Width = 91
-    Height = 13
-    Caption = 'All rights reserved.'
+    Caption = 'Copyright 2010-2014 Wave Software Limited.'
   end
   object Button1: TButton
     Left = 89

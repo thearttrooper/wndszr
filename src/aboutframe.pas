@@ -18,7 +18,6 @@ type
     Label1: TLabel;
     lblVersion: TLabel;
     lblCopyright1: TLabel;
-    lblCopyright2: TLabel;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
