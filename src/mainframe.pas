@@ -102,11 +102,17 @@ const
   DEFAULT_HEIGHT_INDEX = 3;
 
 function gcd(a, b: integer): integer;
+var
+  t: integer;
 begin
-  if (b mod a) = 0 then
-    Result := a
-  else
-    Result := gcd(b, a mod b);
+  while b <> 0 do
+  begin
+    t := a;
+    a := b;
+    b := t mod b;
+  end;
+
+  Result := Abs(a);
 end;
 
 procedure TfrmMainframe.FormCreate(Sender: TObject);
