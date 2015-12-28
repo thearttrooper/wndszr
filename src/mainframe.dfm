@@ -4,13 +4,13 @@ object frmMainframe: TfrmMainframe
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Window Sizer'
-  ClientHeight = 408
-  ClientWidth = 598
+  ClientHeight = 534
+  ClientWidth = 782
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -14
   Font.Name = 'Tahoma'
   Font.Style = []
   Icon.Data = {
@@ -87,29 +87,41 @@ object frmMainframe: TfrmMainframe
   OldCreateOrder = False
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
-  TextHeight = 13
+  PixelsPerInch = 120
+  TextHeight = 17
   object pbxMainframe: TPaintBox
-    Left = 8
-    Top = 8
-    Width = 540
-    Height = 345
+    Left = 10
+    Top = 10
+    Width = 707
+    Height = 452
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     OnPaint = pbxMainframePaint
   end
   object trkWidth: TTrackBar
-    Left = 8
-    Top = 359
-    Width = 540
-    Height = 45
+    Left = 10
+    Top = 469
+    Width = 707
+    Height = 59
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     TabOrder = 0
     ThumbLength = 40
     OnChange = trkWidthOrHeightChange
   end
   object trkHeight: TTrackBar
-    Left = 554
-    Top = 8
-    Width = 45
-    Height = 345
+    Left = 724
+    Top = 10
+    Width = 59
+    Height = 452
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Orientation = trVertical
     TabOrder = 1
     ThumbLength = 40

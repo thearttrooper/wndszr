@@ -9,8 +9,8 @@ program wndszr;
 
 uses
   Forms,
-  mainframe in 'mainframe.pas' {frmMainframe},
-  aboutframe in 'aboutframe.pas' {frmAbout},
+  mainframe in 'mainframe.pas' {frmMainframe} ,
+  aboutframe in 'aboutframe.pas' {frmAbout} ,
   strings in 'strings.pas',
   fileversioninfo in 'fileversioninfo.pas',
   singleinstancelimiter in 'singleinstancelimiter.pas';
@@ -21,12 +21,13 @@ const
   WNDZZR_INSTANCE_ID = 'Global\{D48D0760-6987-42C8-AD7B-37FD233A24B6}';
 
 var
-  g_SingleInstanceLimiter: TSingleInstanceLimiter;
+  g_SingleInstanceLimiter: ISingleInstanceLimiter;
 
 begin
-  g_SingleInstanceLimiter := TSingleInstanceLimiter.Create(WNDZZR_INSTANCE_ID);
+  g_SingleInstanceLimiter := TSingleInstanceLimiter.CreateObject
+    (WNDZZR_INSTANCE_ID);
 
-  if g_SingleInstanceLimiter.IsInstanceAlreadyRunning then
+  if g_SingleInstanceLimiter.IsRunning then
     Application.MessageBox('Window Sizer is already running.', 'Window Sizer')
   else
   begin
@@ -37,5 +38,4 @@ begin
     Application.Run;
   end;
 
-  g_SingleInstanceLimiter.Free;
 end.

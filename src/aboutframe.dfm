@@ -340,11 +340,11 @@ object frmAbout: TfrmAbout
     Caption = 'Version A.B.C (Build DDD)'
   end
   object lblCopyright1: TLabel
-    Left = 17
+    Left = 25
     Top = 106
     Width = 220
     Height = 13
-    Caption = 'Copyright 2010-2014 Wave Software Limited.'
+    Caption = 'Copyright 2010-2015 Wave Software Limited.'
   end
   object Button1: TButton
     Left = 89

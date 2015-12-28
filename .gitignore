@@ -27,11 +27,13 @@
 *.bpi
 *.bpl
 *.dcp
+*.dcu
 *.dll
 *.drc
 *.dres
 *.exe
 *.map
+*.res
 *.rsm
 *.so
 *.tds

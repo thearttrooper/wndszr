@@ -8,8 +8,18 @@ unit mainframe;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, ExtCtrls, StdCtrls;
+  Windows,
+  Messages,
+  SysUtils,
+  Variants,
+  Classes,
+  Graphics,
+  Controls,
+  Forms,
+  Dialogs,
+  ComCtrls,
+  ExtCtrls,
+  StdCtrls;
 
 type
   TfrmMainframe = class(TForm)
@@ -53,8 +63,7 @@ const
   VK_A = $41;
   ID_ABOUT = WM_USER + 1;
   MAX_FONT_SIZE = 28.0;
-  WIDTHS: array[0..12] of integer =
-  (
+  WIDTHS: array [0 .. 12] of integer = (
     320,
     640,
     800, // default
@@ -67,10 +76,8 @@ const
     1680,
     1920,
     2048,
-    2560
-  );
-  HEIGHTS: array[0..17] of integer =
-  (
+    2560);
+  HEIGHTS: array [0 .. 17] of integer = (
     200,
     240,
     480,
@@ -88,12 +95,19 @@ const
     1200,
     1536,
     1600,
-    2048
-  );
+    2048);
 
   // DONT'T FORGET to keep these in sync with WIDTHS and HEIGHTS.
   DEFAULT_WIDTH_INDEX = 2;
   DEFAULT_HEIGHT_INDEX = 3;
+
+function gcd(a, b: integer): integer;
+begin
+  if (b mod a) = 0 then
+    Result := a
+  else
+    Result := gcd(b, a mod b);
+end;
 
 procedure TfrmMainframe.FormCreate(Sender: TObject);
 var
@@ -102,7 +116,8 @@ begin
   AppendMenu(GetSystemMenu(Handle, false), MF_SEPARATOR, 0, nil);
   AppendMenu(GetSystemMenu(Handle, false), MF_STRING, ID_ABOUT, pchar(rsAbout));
 
-  Win32Check(RegisterHotKey(Self.Handle, ID_HOTKEY, MOD_SHIFT + MOD_CONTROL, VK_A));
+  Win32Check(RegisterHotKey(Self.Handle, ID_HOTKEY,
+    MOD_SHIFT + MOD_CONTROL, VK_A));
 
   trkWidth.Max := High(WIDTHS);
   trkHeight.Max := High(HEIGHTS);
@@ -145,17 +160,11 @@ begin
     x := (Screen.Width - WindowWidth) div 2;
     y := (Screen.Height - WindowHeight) div 2;
 
-    SetWindowPos(
-      wnd,
-      HWND_TOP, // not used, see flags
-      x,
-      y,
-      WindowWidth,
-      WindowHeight,
-      SWP_NOZORDER);
+    SetWindowPos(wnd, HWND_TOP, // not used, see flags
+      x, y, WindowWidth, WindowHeight, SWP_NOZORDER);
 
     fwi.cbSize := Sizeof(fwi);
-    fwi.hwnd := wnd;
+    fwi.HWND := wnd;
     fwi.dwFlags := FLASHW_TRAY;
     fwi.uCount := 1;
     fwi.dwTimeout := 0;
@@ -185,6 +194,7 @@ end;
 procedure TfrmMainframe.pbxMainframePaint(Sender: TObject);
 var
   w, h: integer;
+  g, aw, ah: integer;
   dw, dh, f: double;
   r: TRect;
   lbl: string;
@@ -195,22 +205,25 @@ begin
   pbxMainframe.Canvas.FillRect(pbxMainframe.ClientRect);
 
   w := Trunc(FWindow.Width * WindowWidth / MaxWindowWidth);
-  h := Trunc(FWindow.Height * WindowHeight / MaxWindowHeight);
+  h := Trunc(FWindow.Height * WindowHeight / MaxwindowHeight);
 
-  r.Left :=  (pbxMainframe.Width - w) div 2;
+  r.Left := (pbxMainframe.Width - w) div 2;
   r.Right := r.Left + w;
   r.Top := (pbxMainframe.Height - h) div 2;
   r.Bottom := r.Top + h;
 
   pbxMainframe.Canvas.StretchDraw(r, FWindow);
 
-  lbl := Format('%dx%d', [WindowWidth, WindowHeight]);
+  g := gcd(WindowWidth, WindowHeight);
+  aw := WindowWidth div g;
+  ah := WindowHeight div g;
 
+  lbl := Format('%dx%d (%d:%d)', [WindowWidth, WindowHeight, aw, ah]);
 
   pbxMainframe.Canvas.Font.Color := clWhite;
 
   dw := WindowWidth / MaxWindowWidth;
-  dh := WindowHeight / MaxWindowHeight;
+  dh := WindowHeight / MaxwindowHeight;
 
   if dw > dh then
     f := dw
@@ -218,18 +231,16 @@ begin
     f := dh;
 
   pbxMainframe.Canvas.Font.Size := Trunc(MAX_FONT_SIZE);
-  pbxMainframe.Canvas.TextOut(
-    (pbxMainframe.Width - pbxMainframe.Canvas.TextWidth(rsHotKey)) div 2,
-    0,
+  pbxMainframe.Canvas.TextOut
+    ((pbxMainframe.Width - pbxMainframe.Canvas.TextWidth(rsHotKey)) div 2, 0,
     rsHotKey);
 
   pbxMainframe.Canvas.Font.Size := Round(MAX_FONT_SIZE * f);
   pbxMainframe.Canvas.Font.Style := [fsBold];
 
-  pbxMainframe.Canvas.TextOut(
-    (pbxMainframe.Width - pbxMainframe.Canvas.TextWidth(lbl)) div 2,
-    pbxMainframe.Height - pbxMainframe.Canvas.TextHeight(lbl),
-    lbl);
+  pbxMainframe.Canvas.TextOut
+    ((pbxMainframe.Width - pbxMainframe.Canvas.TextWidth(lbl)) div 2,
+    pbxMainframe.Height - pbxMainframe.Canvas.TextHeight(lbl), lbl);
 end;
 
 procedure TfrmMainframe.trkWidthOrHeightChange(Sender: TObject);
@@ -311,7 +322,7 @@ begin
   Result := HEIGHTS[Low(HEIGHTS)];
 end;
 
-function TfrmMainframe.MaxWindowHeight: integer;
+function TfrmMainframe.MaxwindowHeight: integer;
 begin
   Result := HEIGHTS[High(HEIGHTS)];
 end;
